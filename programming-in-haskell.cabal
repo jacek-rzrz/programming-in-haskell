@@ -1,0 +1,9 @@
+name:              programming-in-haskell
+version:           1.0
+Build-Type:        Simple
+cabal-version:     >= 1.2
+
+executable programming-in-haskell
+  main-is:         Main.hs
+  hs-source-dirs:  src
+  build-depends:   base

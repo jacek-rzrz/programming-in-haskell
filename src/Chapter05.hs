@@ -66,3 +66,6 @@ factors n = [i | i <- [1..n], n `mod` i == 0]
 
 perfects :: Int -> [Int]
 perfects n = [i | i <- [1..n], sum (factors i) == 2 * i]
+
+comp1 = [(x,y) | x <- [1,2,3], y <- [4,5,6]]
+comp2 = concat [ [(x,y) | y <- [4,5,6]] | x <- [1,2,3]]

@@ -29,3 +29,12 @@ mymap f = foldr (\x xs -> (f x) : xs) []
 myfilter :: (a -> Bool) -> [a] -> [a]
 myfilter p = foldr (\x xs -> (h x) ++ xs) []
 			where h = (\y -> if p y then [y] else [])
+
+dec2int :: [Int] -> Int
+dec2int = foldl (\s i -> 10 * s + i) 0
+
+curry :: ((a, b) -> c) -> a -> b -> c
+curry f = (\x y -> f (x, y))
+
+uncurry :: (a -> b -> c) -> (a, b) -> c
+uncurry f = (\(x,y) -> f x y)

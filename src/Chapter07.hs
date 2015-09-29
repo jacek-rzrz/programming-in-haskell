@@ -2,6 +2,38 @@
 
 module Chapter07 where
 
+import Data.Char
+
+type Bit = Int
+bit2int :: [Bit] -> Int
+bit2int bs = foldl (\a k -> 2 * a + k) 0 bs
+
+int2bin :: Int -> [Bit]
+int2bin 0 = []
+int2bin n = (int2bin (n `div` 2)) ++ [n `mod` 2]
+
+make8 :: [Bit] -> [Bit]
+make8 bs = if length bs < 8 then make8 (0 : bs) else bs
+
+encode :: String -> [Bit]
+encode = concat . map (make8 . int2bin . ord)
+
+chop8 :: [Bit] -> [[Bit]]
+chop8 [] = []
+chop8 bs = (take 8 bs) : (chop8 (drop 8 bs))
+
+decode :: [Bit] -> String
+decode = map (chr . bit2int) . chop8
+
+channel :: [Bit] -> [Bit]
+channel = id
+
+transmit :: String -> String
+transmit = decode . channel . encode
+
+
+-- exercises
+
 expressionBook f p xs = [f x | x <- xs, p x]
 expressionMine f p = (map f) . (filter p)
 
